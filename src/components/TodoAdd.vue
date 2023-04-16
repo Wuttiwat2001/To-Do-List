@@ -14,6 +14,7 @@
   </v-row>
 </template>
 <script>
+import { v4 as uuidv4 } from 'uuid';
 export default {
   name: "TodoAdd",
   data(){
@@ -23,7 +24,12 @@ export default {
   },
   methods:{
     addTask(){
-      this.$emit("onSubmit", this.taskTextField)
+      const task = {
+        id: uuidv4(),
+        title: this.taskTextField,
+        completed: false
+      }
+      this.$emit("onSubmit", task)
       this.taskTextField = ""
     }
   }
