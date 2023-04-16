@@ -11,7 +11,7 @@
             <v-checkbox v-model="value" value="value"></v-checkbox>
             <span>{{ item.title }}</span>
             <v-spacer></v-spacer>
-            <v-btn color="error">X</v-btn>
+            <v-btn color="error" @click="$emit('onRemove',item.id)">X</v-btn>
           </v-col>
           <v-col cols="12">
             <v-divider></v-divider>
