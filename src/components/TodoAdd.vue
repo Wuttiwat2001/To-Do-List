@@ -5,6 +5,7 @@
         name="name"
         label="label"
         id="id"
+        @keyup.enter="addTask"
         v-model="taskTextField"
       ></v-text-field>
     </v-col>
