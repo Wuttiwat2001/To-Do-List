@@ -1,8 +1,8 @@
 <template>
   <div class="home">
     <v-container>
-      <TodoAdd @onSubmit="addTask"/>
-      <TodoList :todos="todos" />
+      <TodoAdd @onSubmit="addTask" />
+      <TodoList @onRemove="removeTask" :todos="todos" />
     </v-container>
   </div>
 </template>
@@ -27,13 +27,11 @@ export default {
     };
   },
   methods: {
-    addTask(event) {
-      const id = this.todos.length + 1;
-      this.todos.push({
-        id: id,
-        title: event,
-        completed: false,
-      });
+    addTask(task) {
+      this.todos.push(task);
+    },
+    removeTask(id) {
+      this.todos = this.todos.filter((item) => item.id !== id);
     },
   },
 };
