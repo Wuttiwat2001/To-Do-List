@@ -24,21 +24,29 @@ export default {
   },
   methods: {
     async addTask(task) {
-      const res = await axios.post("https://jsonplaceholder.typicode.com/todos", task);
-      this.todos.push(res.data)
+      const res = await axios.post(
+        "https://jsonplaceholder.typicode.com/todos",
+        task
+      );
+      this.todos.push(res.data);
     },
-    removeTask(id) {
-      this.todos = this.todos.filter((item) => item.id !== id);
+    async removeTask(id) {
+      const res = await axios.delete(
+        `https://jsonplaceholder.typicode.com/todos/${id}`
+      );
+      if (res.status === 200) {
+        this.todos = this.todos.filter((item) => item.id !== id);
+      }
     },
     async fetchApi() {
       const res = await axios.get("https://jsonplaceholder.typicode.com/todos");
       this.todos = res.data;
     },
   },
-  filters:{
-    reversed(value){
-      return value.slice().reverse()
-    }
+  filters: {
+    reversed(value) {
+      return value.slice().reverse();
+    },
   },
   mounted() {
     this.fetchApi();
