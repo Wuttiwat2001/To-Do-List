@@ -10,7 +10,7 @@
       ></v-text-field>
     </v-col>
     <v-col cols="2">
-      <v-btn block color="success" @click="addTask">Add</v-btn>
+      <v-btn block color="success" @click="addTask">+</v-btn>
     </v-col>
   </v-row>
 </template>
