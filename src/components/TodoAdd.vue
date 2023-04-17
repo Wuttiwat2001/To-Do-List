@@ -13,6 +13,7 @@
       <v-btn
       color="primary"
       class="ma-2 white--text"
+      :disabled="taskTextField.length < 1"
       fab
       @click="addTask"
     >
@@ -34,13 +35,15 @@ export default {
   },
   methods:{
     addTask(){
-      const task = {
+      if(this.taskTextField.length > 1){
+        const task = {
         id: uuidv4(),
         title: this.taskTextField,
         completed: false
       }
       this.$emit("onSubmit", task)
       this.taskTextField = ""
+      }
     }
   }
 };
