@@ -2,7 +2,11 @@
   <div class="home">
     <v-container>
       <TodoAdd @onSubmit="addTask" />
-      <TodoList @onRemove="removeTask" :todos="todos | reversed" />
+      <TodoList
+        @onEdit="editTask"
+        @onRemove="removeTask"
+        :todos="todos | reversed"
+      />
     </v-container>
   </div>
 </template>
@@ -41,6 +45,17 @@ export default {
     async fetchApi() {
       const res = await axios.get("https://jsonplaceholder.typicode.com/todos");
       this.todos = res.data;
+    },
+    editTask(task) {
+      const newArray = this.todos.map((item) => {
+        if (item.id !== task.id) {
+          return item;
+        }
+        const editArray = { ...item };
+        editArray.title = task.title
+        return editArray
+      });
+      this.todos = newArray
     },
   },
   filters: {
