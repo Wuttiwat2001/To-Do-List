@@ -1,16 +1,25 @@
 <template>
   <v-row>
-    <v-col cols="10">
+    <v-col cols="11">
       <v-text-field
         name="name"
-        label="label"
+        label="Add new Task"
         id="id"
         @keyup.enter="addTask"
         v-model="taskTextField"
       ></v-text-field>
     </v-col>
-    <v-col cols="2">
-      <v-btn block color="success" @click="addTask">+</v-btn>
+    <v-col cols="1" class="d-flex flex justify-center">
+      <v-btn
+      color="primary"
+      class="ma-2 white--text"
+      fab
+      @click="addTask"
+    >
+      <v-icon dark>
+        mdi-plus-box
+      </v-icon>
+    </v-btn>
     </v-col>
   </v-row>
 </template>

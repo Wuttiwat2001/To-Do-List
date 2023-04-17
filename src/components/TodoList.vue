@@ -11,7 +11,16 @@
             <v-checkbox v-model="item.completed"></v-checkbox>
             <span>{{ item.title }}</span>
             <v-spacer></v-spacer>
-            <v-btn color="error" @click="$emit('onRemove',item.id)">X</v-btn>
+            <v-btn color="primary" class="mr-3" @click="$emit('onRemove',item.id)">
+              <v-icon>
+                mdi-note-edit
+              </v-icon>
+            </v-btn>
+            <v-btn color="error" @click="$emit('onRemove',item.id)">
+              <v-icon>
+                mdi-trash-can-outline
+              </v-icon>
+            </v-btn>
           </v-col>
           <v-col cols="12">
             <v-divider></v-divider>
