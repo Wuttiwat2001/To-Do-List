@@ -17,7 +17,7 @@
               <v-btn
                 color="primary"
                 class="mr-3"
-                @click="(dialog = true), curTask(item.title)"
+                @click="(dialog = true), curTask(item.title,item.id)"
               >
                 <v-icon> mdi-note-edit </v-icon>
               </v-btn>
@@ -76,19 +76,30 @@ export default {
       dialog: false,
       currentTask: "",
       taskTextField: "",
+      id: ""
     };
   },
   methods: {
-    curTask(task) {
+    curTask(task,id) {
       this.currentTask = task;
+      this.id = id
     },
     editTask() {
-      this.$emit("onEdit", this.taskTextField);
+      const task = {
+        id: this.id,
+        title: this.taskTextField
+      }
+      this.$emit("onEdit", task);
+      this.currentTask = ""
       this.taskTextField = ""
+      this.id = ""
+      this.dialog = false
     },
     closeDialog(){
       this.dialog = false
+      this.currentTask = ""
       this.taskTextField = ""
+      this.id = ""
     }
   },
 };
