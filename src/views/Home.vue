@@ -29,8 +29,9 @@ export default {
     };
   },
   methods: {
-    addTask(task) {
-      this.todos.push(task);
+    async addTask(task) {
+      const res = await axios.post("https://jsonplaceholder.typicode.com/todos", task);
+      this.todos.push(res.data)
     },
     removeTask(id) {
       this.todos = this.todos.filter((item) => item.id !== id);
