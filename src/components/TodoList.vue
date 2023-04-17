@@ -9,7 +9,7 @@
         >
           <v-col cols="12" class="d-flex flex-row align-center">
             <v-checkbox v-model="item.completed"></v-checkbox>
-            <span>{{ item.title }}</span>
+            <span :class="{ strikeout:item.completed }">{{ item.title }}</span>
             <v-spacer></v-spacer>
             <v-btn color="primary" class="mr-3" @click="$emit('onRemove',item.id)">
               <v-icon>
@@ -36,4 +36,8 @@ export default {
   props: ["todos"],
 };
 </script>
-<style></style>
+<style scoped>
+.strikeout{
+  text-decoration: line-through;
+}
+</style>
