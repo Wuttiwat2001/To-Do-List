@@ -2,7 +2,7 @@
   <div class="home">
     <v-container>
       <TodoAdd @onSubmit="addTask" />
-      <TodoList @onRemove="removeTask" :todos="todos" />
+      <TodoList @onRemove="removeTask" :todos="reversedTodo" />
     </v-container>
   </div>
 </template>
@@ -20,12 +20,6 @@ export default {
   data() {
     return {
       todos: [],
-      todos_mockup: [
-        { id: 1, title: "Task 1", completed: false },
-        { id: 2, title: "Task 2", completed: true },
-        { id: 3, title: "Task 3", completed: false },
-        { id: 4, title: "Task 4", completed: false },
-      ],
     };
   },
   methods: {
@@ -40,6 +34,11 @@ export default {
       const res = await axios.get("https://jsonplaceholder.typicode.com/todos");
       this.todos = res.data;
     },
+  },
+  computed:{
+    reversedTodo(){
+      return this.todos.slice().reverse()
+    }
   },
   mounted() {
     this.fetchApi();
