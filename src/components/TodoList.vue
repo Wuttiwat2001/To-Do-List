@@ -40,7 +40,7 @@
               <span style="color: white">Edit Task</span>
             </v-col>
             <v-col class="d-flex flex justify-end" cols="6">
-              <v-btn icon color="white" @click="dialog = false">
+              <v-btn icon color="white" @click="closeDialog">
                 <v-icon>mdi-close</v-icon>
               </v-btn>
             </v-col>
@@ -86,6 +86,10 @@ export default {
       this.$emit("onEdit", this.taskTextField);
       this.taskTextField = ""
     },
+    closeDialog(){
+      this.dialog = false
+      this.taskTextField = ""
+    }
   },
 };
 </script>
