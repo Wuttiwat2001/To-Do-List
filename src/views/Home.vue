@@ -2,7 +2,7 @@
   <div class="home">
     <v-container>
       <TodoAdd @onSubmit="addTask" />
-      <TodoList @onRemove="removeTask" :todos="reversedTodo" />
+      <TodoList @onRemove="removeTask" :todos="todos | reversed" />
     </v-container>
   </div>
 </template>
@@ -35,9 +35,9 @@ export default {
       this.todos = res.data;
     },
   },
-  computed:{
-    reversedTodo(){
-      return this.todos.slice().reverse()
+  filters:{
+    reversed(value){
+      return value.slice().reverse()
     }
   },
   mounted() {
