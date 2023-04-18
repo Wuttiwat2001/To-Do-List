@@ -17,7 +17,7 @@
               <v-btn
                 color="primary"
                 class="mr-3"
-                @click="(dialog = true), curTask(item.title,item.id)"
+                @click="(dialog = true), curTask(item.title, item.id)"
               >
                 <v-icon> mdi-note-edit </v-icon>
               </v-btn>
@@ -50,18 +50,25 @@
         <v-container class="pa-5">
           <span>{{ currentTask }}</span>
           <v-text-field
-            name="name"
+            name="task"
             label="Edit Task"
-            id="id"
+            id="task"
             v-model="taskTextField"
-          ></v-text-field>
+          />
         </v-container>
 
         <v-divider></v-divider>
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn :disabled="taskTextField.length < 1" color="primary" text @click="editTask()"> I accept </v-btn>
+          <v-btn
+            :disabled="taskTextField.length < 1"
+            color="primary"
+            text
+            @click="editTask()"
+          >
+            I accept
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -76,31 +83,31 @@ export default {
       dialog: false,
       currentTask: "",
       taskTextField: "",
-      id: ""
+      id: "",
     };
   },
   methods: {
-    curTask(task,id) {
+    curTask(task, id) {
       this.currentTask = task;
-      this.id = id
+      this.id = id;
     },
     editTask() {
       const task = {
         id: this.id,
-        title: this.taskTextField
-      }
+        title: this.taskTextField,
+      };
       this.$emit("onEdit", task);
-      this.currentTask = ""
-      this.taskTextField = ""
-      this.id = ""
-      this.dialog = false
+      this.currentTask = "";
+      this.taskTextField = "";
+      this.id = "";
+      this.dialog = false;
     },
-    closeDialog(){
-      this.dialog = false
-      this.currentTask = ""
-      this.taskTextField = ""
-      this.id = ""
-    }
+    closeDialog() {
+      this.dialog = false;
+      this.currentTask = "";
+      this.taskTextField = "";
+      this.id = "";
+    },
   },
 };
 </script>
