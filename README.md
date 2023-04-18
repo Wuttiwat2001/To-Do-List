@@ -1,4 +1,4 @@
-# todo_app
+# to-do-list-app
 
 ## Project setup
 ```
